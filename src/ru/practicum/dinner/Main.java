@@ -1,6 +1,6 @@
 package ru.practicum.dinner;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -23,6 +23,8 @@ public class Main {
                     generateDishCombo();
                     break;
                 case "3":
+                    System.out.println("Вы вышли из программы");
+                    scanner.close();
                     return;
             }
         }
@@ -40,26 +42,34 @@ public class Main {
         String dishType = scanner.nextLine();
         System.out.println("Введите название блюда:");
         String dishName = scanner.nextLine();
-
-        // добавьте новое блюдо
+        dc.addDish(dishType, dishName);
     }
 
     private static void generateDishCombo() {
         System.out.println("Начинаем конструировать обед...");
-
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
-        int numberOfCombos = scanner.nextInt();
-        scanner.nextLine();
-
+        int numberOfCombos;
+        while (true) {
+            try {
+                numberOfCombos = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                scanner.next();
+                System.out.println("Введите количество наборов, для генерации. Должна быть введена цифра");
+            }
+        }
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
         String nextItem = scanner.nextLine();
-
-        //реализуйте ввод типов блюд
+        List<String> typesDishForGenerate = new ArrayList<>();
         while (!nextItem.isEmpty()) {
-
+            if (dc.checkType(nextItem)) {
+                typesDishForGenerate.add(nextItem);
+            } else {
+                System.out.println("Такого типа блюда не существует. Введите тип ещё раз");
+            }
+            nextItem = scanner.nextLine();
         }
-
-        // сгенерируйте комбинации блюд и выведите на экран
-
+        dc.generateAndPrintResult(numberOfCombos,typesDishForGenerate);
     }
 }
