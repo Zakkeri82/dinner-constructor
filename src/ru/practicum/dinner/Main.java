@@ -1,6 +1,9 @@
 package ru.practicum.dinner;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -70,6 +73,6 @@ public class Main {
             }
             nextItem = scanner.nextLine();
         }
-        dc.generateAndPrintResult(numberOfCombos,typesDishForGenerate);
+        dc.generateAndPrintResult(numberOfCombos, typesDishForGenerate);
     }
 }

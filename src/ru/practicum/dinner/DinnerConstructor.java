@@ -26,7 +26,7 @@ public class DinnerConstructor {
         }
     }
 
-    public void generateAndPrintResult (int count, List<String> listType) {
+    public void generateAndPrintResult(int count, List<String> listType) {
         List<ArrayList<String>> resultSet = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             ArrayList<String> kit = new ArrayList<>();
@@ -36,7 +36,7 @@ public class DinnerConstructor {
             }
             resultSet.add(kit);
         }
-        for(int i = 0; i < resultSet.size(); i++) {
+        for (int i = 0; i < resultSet.size(); i++) {
             System.out.println("Комбо " + (i + 1));
             System.out.println(resultSet.get(i));
         }
