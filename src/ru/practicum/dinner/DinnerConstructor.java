@@ -27,18 +27,18 @@ public class DinnerConstructor {
     }
 
     public void generateAndPrintResult(int count, List<String> listType) {
-        List<ArrayList<String>> resultSet = new ArrayList<>();
+        List<ArrayList<String>> resultGenerateCombo = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            ArrayList<String> kit = new ArrayList<>();
+            ArrayList<String> combo = new ArrayList<>();
             for (String s : listType) {
                 List<Dish> dishes = menu.get(s);
-                kit.add(dishes.get(random.nextInt(dishes.size())).getDishName());
+                combo.add(dishes.get(random.nextInt(dishes.size())).getDishName());
             }
-            resultSet.add(kit);
+            resultGenerateCombo.add(combo);
         }
-        for (int i = 0; i < resultSet.size(); i++) {
+        for (int i = 0; i < resultGenerateCombo.size(); i++) {
             System.out.println("Комбо " + (i + 1));
-            System.out.println(resultSet.get(i));
+            System.out.println(resultGenerateCombo.get(i));
         }
     }
 
