@@ -15,17 +15,28 @@ public class DinnerConstructor {
         random = new Random();
     }
 
+    /**
+     * Добавляет блюдо в меню по его типу
+     *
+     * @param dishType тип блюда
+     * @param dishName название блюда
+     */
     public void addDish(String dishType, String dishName) {
-        if (checkType(dishType)) {
-            List<Dish> dishList = menu.get(dishType);
-            dishList.add(new Dish(dishName));
-        } else {
+        if (!checkType(dishType)) { //используем 11 jdk (на 17 сказали много правок в курсе нужно делать)
             List<Dish> dishList = new ArrayList<>();
-            dishList.add(new Dish(dishName));
             menu.put(dishType, dishList);
+            menu.get(dishType).add(new Dish(dishName));
+        } else {
+            menu.get(dishType).add(new Dish(dishName));
         }
     }
 
+    /**
+     * генерация определенного колличества вариантов комбо из заданных типов блюд (используется Random)
+     *
+     * @param count колличество вариантов комбо
+     * @param listType список типов блюд из которых нужно сгенерировать комбо
+     */
     public void generateAndPrintResult(int count, List<String> listType) {
         List<ArrayList<String>> resultGenerateCombo = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -42,6 +53,12 @@ public class DinnerConstructor {
         }
     }
 
+    /**
+     * Проверяет присутствие типа блюд в меню
+     *
+     * @param type тип блюда
+     * @return возвращает boolean значение присутствия блюда
+     */
     boolean checkType(String type) {
         return menu.containsKey(type);
     }
